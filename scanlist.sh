@@ -1,4 +1,3 @@
-#!/bin/bash
 #Filename: scanlist.sh
 #Purpose: Scans a list of IP:PORT
 
@@ -12,11 +11,11 @@ then
     echo "Where list is the name of the list file. The list should have one IP per line and be in IP:PORT format"
 else
 
-    resultfile=scanlist$(date "+%m%d%y%H%M%S").txt
-    touch $resultfile
     for i in $(cat $list)
     do
-        results=$(nmap -p$(echo $i | cut -d: -f2) $(echo $i | cut -d: -f1) -Pn | grep $(echo $i | cut -d: -f2))
-        echo "IP: $i || Scan Results: $results" >> $resultfile
+        results=$(nmap -p$(echo $i | cut -d: -f2) $(echo $i | cut -d: -f1) -Pn | grep $(echo $i | cut -d: -f2) &)
+        shift
+        echo "IP: $i || Scan Results: $results" 
     done
+    wait
 fi
