@@ -1,3 +1,4 @@
+#!/bin/bash
 #Filename: scanlist.sh
 #Purpose: Scans a list of IP:PORT
 
